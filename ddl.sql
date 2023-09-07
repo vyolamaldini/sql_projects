@@ -1,5 +1,20 @@
 -- Datenbankimplementierung
 
+/*
+Erstelle eine Datenbank, die Messwerte von Sensoren an verschiedenen Standorten festhalten. 
+Grundlage für die Datenbank sind ein vorgegebenes ER-Diagramm sowie die nachfolgenden Stichpunkte für zusätzliche Integritätsbedingungen:
+1. Primärschlüssel dürfen grundsätzlich nicht leer sein.
+2. Es sollen nur Anbieter abgebildet werden können, die in Deutschland Umsatzsteuerpflichtig sind. Angabe von Name und Website verpflichtend.
+3. Für Websiten und API-URLs soll sichergestellt werden, dass diese immer das HTTP-Protokoll (oder die gesicherte Version davon) benutzen.
+4. Bundesland-Kürzel sollen nach dem ISO 3166-2 Standard formatiert werden. Nur deutsche Bundesländer können eingefügt werden. Alle Namen des Bundesländers müssen unterschiedlich sein.
+5. 
+6. GeoHashes sollen lediglich mit einer Präzision von 10cm × 10cm abgespeichert werden
+7. Primärschlüssel für Stationen werden automatisch in aufsteigender Reihenfolge vergeben.
+8. Der Abstand zwischen zwei Stationen muss immer definiert sein und kann nicht negativ sein.
+9. Die „Messwert”-Generalisierung soll Attribut-sparend im Null-Stil abgebildet werden.
+10. Die Windrichtung wird in Grad als ganze Zahl angegeben.
+*/
+
 CREATE TABLE Anbieter(
 	UStID VARCHAR(11) NOT NULL PRIMARY KEY CHECK(UStID LIKE 'DE%' AND LENGTH(UStID) = 11),
 	Name VARCHAR(30) NOT NULL,
