@@ -7,9 +7,7 @@ Grundlage für die Datenbank sind ein vorgegebenes ER-Diagramm sowie die nachfol
 2. Es sollen nur Anbieter abgebildet werden können, die in Deutschland Umsatzsteuerpflichtig sind. Angabe von Name und Website verpflichtend.
 3. Für Websiten und API-URLs soll sichergestellt werden, dass diese immer das HTTP-Protokoll (oder die gesicherte Version davon) benutzen.
 4. Bundesland-Kürzel sollen nach dem ISO 3166-2 Standard formatiert werden. Nur deutsche Bundesländer können eingefügt werden. Alle Namen des Bundesländers sind unterschiedlich.
-5. Koordinaten jedoch ausschließlich im EPSG-Code 4326 abgebildet werden können. 
-   Es soll sichergestellt werden, dass eingegebene Koordinaten nicht außerhalb des entsprechenden Wertebereichs liegen. 
-   Für jede Koordinate muss ein GeoHash und der EPSG-Code gespeichert werden.
+5. Koordinaten jedoch ausschließlich im EPSG-Code 4326 abgebildet werden können. Es soll sichergestellt werden, dass eingegebene Koordinaten nicht außerhalb des entsprechenden Wertebereichs liegen. Für jede Koordinate muss ein GeoHash und der EPSG-Code gespeichert werden.
 6. GeoHashes sollen lediglich mit einer Präzision von 10cm × 10cm abgespeichert werden
 7. Primärschlüssel für Stationen werden automatisch in aufsteigender Reihenfolge vergeben.
 8. Der Abstand zwischen zwei Stationen muss immer definiert sein und kann nicht negativ sein.
