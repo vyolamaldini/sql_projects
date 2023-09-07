@@ -1,6 +1,7 @@
 -- SQL-DQL Aufgabe, Uni-Schema. 
 
 -- Formuliere einen SQL-Ausdruck, der äquivalent zu der jeweiligen Aussage.
+-- mehrere Infos dazu: https://isis.tu-berlin.de/mod/quiz/review.php?attempt=3242341&cmid=1522474#question-3714214-10
 
 /* 
 Aufgabe 1:
