@@ -17,6 +17,7 @@ Grundlage für die Datenbank sind ein vorgegebenes ER-Diagramm sowie die nachfol
 10. Die Windrichtung wird in Grad als ganze Zahl angegeben.
 */
 
+-- Tabelle Anbieter
 CREATE TABLE Anbieter(
 	UStID VARCHAR(11) NOT NULL PRIMARY KEY CHECK(UStID LIKE 'DE%' AND LENGTH(UStID) = 11),
 	Name VARCHAR(30) NOT NULL,
@@ -26,6 +27,7 @@ CREATE TABLE Anbieter(
     	Lizenz TEXT
 	);
 
+-- Tabelle Bundesland
 CREATE TABLE Bundesland(
 	Kuerzel VARCHAR(5) NOT NULL PRIMARY KEY 
   	CHECK (Kuerzel LIKE 'DE-__'),
@@ -33,6 +35,7 @@ CREATE TABLE Bundesland(
   	Aufsichtsbehoerde VARCHAR(30)
 	);
 
+-- Tabelle arbeitet_in
 CREATE TABLE arbeitet_in(
 	UStID VARCHAR(11) NOT NULL,
   	Kuerzel VARCHAR(5) NOT NULL,
@@ -42,6 +45,7 @@ CREATE TABLE arbeitet_in(
     	FOREIGN KEY (Kuerzel) REFERENCES Bundesland(Kuerzel)
 	);
 
+-- Tabelle Koordinate
 CREATE TABLE Koordinate(
 	Latitude DECIMAL(8,6) NOT NULL CHECK (Latitude >= -90.0 AND Latitude <= 90.0),
   	Longitude DECIMAL(9,6) NOT NULL CHECK (Longitude >= -180.0 AND Longitude <= 180.0),
@@ -53,6 +57,7 @@ CREATE TABLE Koordinate(
    	PRIMARY KEY (Latitude, Longitude)
 	);
 
+-- Tabelle Polygon
 CREATE TABLE Polygon(
 	Kuerzel VARCHAR(5) NOT NULL,
   	Latitude FLOAT NOT NULL,
@@ -63,6 +68,7 @@ CREATE TABLE Polygon(
 	FOREIGN KEY (Latitude, Longitude) REFERENCES Koordinate(Latitude, Longitude)
 	);
 
+-- Tabelle Station
 CREATE TABLE Station(
 	ID SERIAL NOT NULL PRIMARY KEY,
   	Hoehe DECIMAL(6,2),
@@ -73,7 +79,8 @@ CREATE TABLE Station(
   	FOREIGN KEY (UStID) REFERENCES Anbieter(UStID),
   	FOREIGN KEY (Latitude, Longitude) REFERENCES Koordinate(Latitude, Longitude)
 	);
-  	
+
+-- Tabelle verbunden_mit
 CREATE TABLE verbunden_mit(
     	StationA_ID INT NOT NULL,
     	StationB_ID INT NOT NULL,
@@ -84,6 +91,7 @@ CREATE TABLE verbunden_mit(
 	FOREIGN KEY (StationB_ID) REFERENCES Station(ID)
 	);
 
+-- Tabelle Messwert
 CREATE TABLE Messwert(
 	Zeitpunkt DATETIME NOT NULL,
   	ID INT NOT NULL,
