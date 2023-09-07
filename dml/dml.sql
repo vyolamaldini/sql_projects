@@ -1,7 +1,7 @@
 -- Datenbankerweiterung
 
 /*
-Eine halbfertige Datenbank ist gebgeben. 
+Eine halbfertige Datenbank ist gegeben. 
 Erstellen Sie anschließend die notwendigen SQL-Ausdrücke, um die Datenbank so zu modifizieren, dass sie die Vorgaben erfüllt.
 
 Informationen zum Datenbankentwurf
