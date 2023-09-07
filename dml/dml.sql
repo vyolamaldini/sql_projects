@@ -75,18 +75,18 @@ BEFORE DELETE ON Filiale
 FOR EACH ROW
 BEGIN
     UPDATE Facharbeiter_in
-    SET Arbeitet_in = NULL,
-		Zugeordnet_seit = NULL
+    SET Arbeitet_in = NULL, 
+	Zugeordnet_seit = NULL
     WHERE Arbeitet_in = OLD.FilialNr;
     
     UPDATE Sekretaer_in
     SET Arbeitet_in = NULL,
-		Zugeordnet_seit = NULL
+	Zugeordnet_seit = NULL
     WHERE Arbeitet_in = OLD.FilialNr;
     
     UPDATE Manager_in
     SET Zustaendig_fuer = NULL,
-		Zugeordnet_seit = NULL
+	Zugeordnet_seit = NULL
     WHERE Zustaendig_fuer = OLD.FilialNr;  
 END;
 
