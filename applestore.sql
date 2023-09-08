@@ -1,4 +1,4 @@
-** EXPLORATORY ANALYSIS **
+-- ** EXPLORATORY ANALYSIS **
 
 -- Check the number of unique apps in both tables
 
@@ -28,27 +28,27 @@ ORDER BY NumApps DESC
 SELECT MIN(user_rating) as MinRating, AVG(user_rating) as AverageRating, MAX(user_rating) AS MaxRating
 FROM AppleStore
 
-** DATA ANALYSIS **
+-- ** DATA ANALYSIS **
 
 -- Determine wether paid apps have higher rating than free apps
 
 SELECT CASE 
-			      WHEN price > 0 
-			      THEN 'Paid' 
-			      ELSE 'Free'
-            END AS AppType, 
-            AVG(user_rating) AS AverageRating
+	WHEN price > 0 
+	THEN 'Paid'
+	ELSE 'Free'
+        END AS AppType, 
+        AVG(user_rating) AS AverageRating
 FROM AppleStore
 GROUP BY AppType
 
 -- Determine wether apps with more supported languages have higher rating
 
 SELECT CASE
-			      WHEN lang.num < 10 THEN '< 10 Languages'
-            WHEN lang.num BETWEEN 10 AND 30 THEN '10-30 Languages'
-            ELSE '> 30 Languages'
-            END AS LangNumType,
-            AVG(user_rating) AS AverageRating
+	WHEN lang.num < 10 THEN '< 10 Languages'
+	WHEN lang.num BETWEEN 10 AND 30 THEN '10-30 Languages'
+        ELSE '> 30 Languages'
+        END AS LangNumType,
+        AVG(user_rating) AS AverageRating
 FROM AppleStore
 GROUP BY LangNumType
 
@@ -61,11 +61,11 @@ ORDER BY AverageRating ASC
 -- Check if there is correlation between length of description with user rating
 
 SELECT CASE
-            WHEN length(d.app_desc) < 500 then 'Short'
-            WHEN length(d.app_desc) BETWEEN 500 AND 1000 THEN 'Medium'
-            ELSE 'Long'
-            END AS DescLengthType,
-            AVG(user_rating) as AverageRating
+	WHEN length(d.app_desc) < 500 then 'Short'
+        WHEN length(d.app_desc) BETWEEN 500 AND 1000 THEN 'Medium'
+        ELSE 'Long'
+        END AS DescLengthType,
+        AVG(user_rating) as AverageRating
 FROM AppleStore a 
 JOIN AppStoreDescription_combined d
 ON a.id = d.id
@@ -76,8 +76,8 @@ ORDER BY AverageRating DESC
 
 SELECT prime_genre, track_name, user_rating
 FROM (
-		  SELECT prime_genre, track_name, user_rating,
-  	  RANK() OVER (PARTITION BY prime_genre ORDER BY user_rating DESC, rating_count_tot DESC) AS rank
-  		FROM AppleStore
+	SELECT prime_genre, track_name, user_rating,
+	RANK() OVER (PARTITION BY prime_genre ORDER BY user_rating DESC, rating_count_tot DESC) AS rank
+	FROM AppleStore
 ) AS a
 WHERE a.rank = 1
