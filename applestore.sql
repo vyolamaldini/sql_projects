@@ -6,7 +6,7 @@ SELECT COUNT(DISTINCT id) AS UniqueApps FROM AppleStore
 
 SELECT COUNT(DISTINCT id) AS UniqueApps FROM AppStoreDescription_combined
 
--- Search for any missing values in key fields
+-- Search for any missing values in key fields 
 
 SELECT COUNT(*) AS MissingValues
 FROM AppleStore
